@@ -42,6 +42,11 @@ bluebird@3.5.1:
   resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
   integrity sha1-2VUfnemPH82h5oPRfukaBgLuLrk=
 
+bluebird@^3.5.3:
+  version "3.5.3"
+  resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
+  integrity sha1-fQHG+WFsmlGrD4xUmnnf5uwz76c=
+
 bson@^1.1.0, bson@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/bson/download/bson-1.1.0.tgz#bee57d1fb6a87713471af4e32bcae36de814b5b0"
@@ -98,7 +103,7 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "http://registry.npm.taobao.org/mongoose-legacy-pluralize/download/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha1-O6n5H6UHtRhtOZ+0CFS/8Y+1Y+Q=
 
-mongoose@^5.4.0:
+mongoose@^5.3.15:
   version "5.4.0"
   resolved "http://registry.npm.taobao.org/mongoose/download/mongoose-5.4.0.tgz#78e784a38aab8552c07ef336a342aa75a413c463"
   integrity sha1-eOeEo4qrhVLAfvM2o0KqdaQTxGM=
