@@ -1,4 +1,4 @@
-import Promise from 'bluebird'
+import * as Promise from 'bluebird'
 import * as mongoose from 'mongoose'
 import zipObject from 'lodash/zipObject'
 
@@ -43,7 +43,7 @@ export class MongooseDao {
     }
   }
 
-  public start = (): Promise<{}> => new Promise((resolve) => resolve(0))
+  public start = (): Promise<{}> => new Promise((resolve: (thenableOrResult?: any) => void): void => resolve(0))
 
   public create (doc: any, populate?: mongoose.ModelPopulateOptions) {
     return this.model.create(doc)
@@ -136,7 +136,7 @@ export class MongooseDao {
 
 }
 
-export function MongooseDaoSetting (setting: daoSetting) {
+export function MongooseDaoSetting (setting: daoSetting): any {
   return function (target: any): void {
     target.prototype.setting = {
       idName: 'id',
@@ -147,7 +147,7 @@ export function MongooseDaoSetting (setting: daoSetting) {
   }
 }
 
-const callback = (resolve: (thenableOrResult?: any) => void, reject: (error?: any) => void, err: Error, doc: any = null) => {
+export const callback = (resolve: (thenableOrResult?: any) => void, reject: (error?: any) => void, err: Error, doc: any = null): void => {
   if (err) {
     reject(err)
   }

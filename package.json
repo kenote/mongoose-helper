@@ -17,6 +17,16 @@
     "typescript": "^3.2.2"
   },
   "peerDependencies": {
+    "bluebird": "^3.5",
     "mongoose": "^5"
-  }
+  },
+  "engines": {
+    "node": ">8.0.0"
+  },
+  "keywords": [
+    "mongoose",
+    "helper",
+    "assistant",
+    "typescript"
+  ]
 }

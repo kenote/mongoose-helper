@@ -31,13 +31,13 @@ var __spread = (this && this.__spread) || function () {
     return ar;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var bluebird_1 = require("bluebird");
+var Promise = require("bluebird");
 var zipObject_1 = require("lodash/zipObject");
 var MongooseDao = (function () {
     function MongooseDao(Model, options) {
         if (options === void 0) { options = {}; }
         this.populate = { path: '' };
-        this.start = function () { return new bluebird_1.default(function (resolve) { return resolve(0); }); };
+        this.start = function () { return new Promise(function (resolve) { return resolve(0); }); };
         this.model = Model;
         this.name = options.name || Model.modelName;
         if (options.populate) {
@@ -50,14 +50,14 @@ var MongooseDao = (function () {
     MongooseDao.prototype.create = function (doc, populate) {
         var _this = this;
         return this.model.create(doc)
-            .then(function (res) { return bluebird_1.default.promisifyAll(res)['populateAsync'](populate || _this.populate); });
+            .then(function (res) { return Promise.promisifyAll(res)['populateAsync'](populate || _this.populate); });
     };
     MongooseDao.prototype.insert = function (doc, populate) {
         var _this = this;
         var idName = this.setting.idName;
         var idStart = this.setting.idStart || 1;
         if (!this.seqModel)
-            return new bluebird_1.default(function (resolve) { return resolve(undefined); });
+            return new Promise(function (resolve) { return resolve(undefined); });
         return this.addAndUpdateKeys(this.name, idStart)
             .then(function (id) {
             var _a;
@@ -68,8 +68,8 @@ var MongooseDao = (function () {
         var _this = this;
         if (start === void 0) { start = 1; }
         var idStep = this.setting.idStep || 1;
-        return new bluebird_1.default(function (resolve, reject) {
-            _this.seqModel.findOne({ name: name }, function (err, res) { return callback(resolve, reject, err, res); });
+        return new Promise(function (resolve, reject) {
+            _this.seqModel.findOne({ name: name }, function (err, res) { return exports.callback(resolve, reject, err, res); });
         })
             .then(function (doc) {
             if (doc) {
@@ -85,39 +85,39 @@ var MongooseDao = (function () {
     };
     MongooseDao.prototype.remove = function (conditions) {
         var _this = this;
-        return new bluebird_1.default(function (resolve, reject) {
-            _this.model.deleteMany(conditions, function (err) { return callback(resolve, reject, err); });
+        return new Promise(function (resolve, reject) {
+            _this.model.deleteMany(conditions, function (err) { return exports.callback(resolve, reject, err); });
         });
     };
     MongooseDao.prototype.findOne = function (conditions, options) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        return new bluebird_1.default(function (resolve, reject) {
+        return new Promise(function (resolve, reject) {
             _this.model.findOne(conditions)
                 .populate(options.populate || _this.populate)
                 .select(options.select)
-                .exec(function (err, res) { return callback(resolve, reject, err, res); });
+                .exec(function (err, res) { return exports.callback(resolve, reject, err, res); });
         });
     };
     MongooseDao.prototype.find = function (conditions, options) {
         var _this = this;
         if (conditions === void 0) { conditions = {}; }
         if (options === void 0) { options = {}; }
-        return new bluebird_1.default(function (resolve, reject) {
+        return new Promise(function (resolve, reject) {
             _this.model.find(conditions)
                 .populate(options.populate || _this.populate)
                 .select(options.select)
                 .sort(options.sort || { _id: 1 })
                 .limit(options.limit || 0)
                 .skip(options.skip || 0)
-                .exec(function (err, res) { return callback(resolve, reject, err, res); });
+                .exec(function (err, res) { return exports.callback(resolve, reject, err, res); });
         });
     };
     MongooseDao.prototype.counts = function (conditions) {
         var _this = this;
         if (conditions === void 0) { conditions = null; }
-        return new bluebird_1.default(function (resolve, reject) {
-            _this.model.countDocuments(conditions, function (err, count) { return callback(resolve, reject, err, count); });
+        return new Promise(function (resolve, reject) {
+            _this.model.countDocuments(conditions, function (err, count) { return exports.callback(resolve, reject, err, count); });
         });
     };
     MongooseDao.prototype.clear = function () {
@@ -126,21 +126,21 @@ var MongooseDao = (function () {
     };
     MongooseDao.prototype.updateOne = function (conditions, doc) {
         var _this = this;
-        return new bluebird_1.default(function (resolve, reject) {
-            _this.model.updateOne(conditions, doc, function (err, raw) { return callback(resolve, reject, err, raw); });
+        return new Promise(function (resolve, reject) {
+            _this.model.updateOne(conditions, doc, function (err, raw) { return exports.callback(resolve, reject, err, raw); });
         });
     };
     MongooseDao.prototype.update = function (conditions, doc) {
         var _this = this;
-        return new bluebird_1.default(function (resolve, reject) {
-            _this.model.update(conditions, doc, function (err, raw) { return callback(resolve, reject, err, raw); });
+        return new Promise(function (resolve, reject) {
+            _this.model.update(conditions, doc, function (err, raw) { return exports.callback(resolve, reject, err, raw); });
         });
     };
     MongooseDao.prototype.list = function (conditions, options) {
         if (conditions === void 0) { conditions = {}; }
         if (options === void 0) { options = {}; }
         var limit = options.limit;
-        return bluebird_1.default.all([
+        return Promise.all([
             this.find(conditions, options),
             this.counts(conditions)
         ])
@@ -155,7 +155,7 @@ function MongooseDaoSetting(setting) {
     };
 }
 exports.MongooseDaoSetting = MongooseDaoSetting;
-var callback = function (resolve, reject, err, doc) {
+exports.callback = function (resolve, reject, err, doc) {
     if (doc === void 0) { doc = null; }
     if (err) {
         reject(err);

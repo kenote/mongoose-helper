@@ -11,7 +11,9 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var Promise = require("bluebird");
 var mongoose = require("mongoose");
+var dao_1 = require("./dao");
 var MongoDB = (function () {
     function MongoDB() {
         this.__defaultOptions = {
@@ -27,6 +29,16 @@ var MongoDB = (function () {
                 process.exit(1);
             }
         });
+    };
+    MongoDB.prototype.clearSeq = function () {
+        var seqModel = (this.__Models || {}).seqModel;
+        if (!seqModel) {
+            return new Promise(function (resolve) { return resolve(0); });
+        }
+        return new Promise(function (resolve, reject) {
+            seqModel.deleteMany({}, function (err) { return dao_1.callback(resolve, reject, err); });
+        })
+            .then(function () { return seqModel.collection.dropIndexes(); });
     };
     return MongoDB;
 }());

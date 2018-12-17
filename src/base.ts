@@ -1,4 +1,6 @@
+import * as Promise from 'bluebird'
 import * as mongoose from 'mongoose'
+import { callback } from './dao'
 
 interface mongoSetting {
   urls: string;
@@ -24,6 +26,17 @@ export class MongoDB {
         process.exit(1)
       }
     })
+  }
+
+  public clearSeq (): Promise<any> {
+    let { seqModel } = this.__Models || <models>{}
+    if (!seqModel) {
+      return new Promise((resolve: (thenableOrResult?: any) => void): void => resolve(0))
+    }
+    return new Promise((resolve: (thenableOrResult?: any) => void, reject: (error?: any) => void) => {
+      seqModel.deleteMany({}, (err: any) => callback(resolve, reject, err))
+    })
+    .then(() => seqModel.collection.dropIndexes())
   }
 }
 
