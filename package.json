@@ -1,0 +1,21 @@
+{
+  "name": "@kenote/mongoose-helper",
+  "version": "1.0.0",
+  "description": "Mongoose's Helper.",
+  "main": "./dist/index.js",
+  "typings": "./src/index.d.ts",
+  "repository": "https://github.com/kenote/mongoose-helper.git",
+  "author": "thondery <thondery@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.3.5",
+    "mongoose": "^5.3.15",
+    "typescript": "^3.2.2"
+  },
+  "peerDependencies": {
+    "mongoose": "^5"
+  }
+}
