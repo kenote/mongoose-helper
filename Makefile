@@ -2,7 +2,6 @@
 all: install
 
 clear:
-	@rm -rf dist
 	@rm -rf node_modules
 
 publish:

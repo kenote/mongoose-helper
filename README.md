@@ -4,7 +4,7 @@ Mongoose's Helper.
 ## Installation
 
 ```bash
-$ yarn add @kenote/mongoose-helper
+$ yarn add kenote-mongoose-helper
 ```
 
 ## Usages
@@ -13,7 +13,7 @@ $ yarn add @kenote/mongoose-helper
 
 ```ts
 import * as mongoose from 'mongoose'
-import { MongoDB as mongoDB, MongoSetting, ModelMount } from '@kenote/mongoose-helper'
+import { MongoDB as mongoDB, MongoSetting, ModelMount } from 'kenote-mongoose-helper'
 import config from '../config'
 import userSchema from './user'
 
@@ -44,7 +44,7 @@ export default DB.__Models
 import Promise from 'bluebird'
 import * as mongoose from 'mongoose' 
 import __Model from '../models'
-import { MongooseDao as mongooseDao, MongooseDaoSetting, QueryOptions } from '@kenote/mongoose-helper'
+import { MongooseDao as mongooseDao, MongooseDaoSetting, QueryOptions } from 'kenote-mongoose-helper'
 
 (<any>mongoose).Promise = Promise
 const Model: mongoose.Model<mongoose.Document, {}> = __Model['userModel']
