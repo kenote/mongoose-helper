@@ -1,10 +1,12 @@
 
-import { MongoDB as mongoDB, MongoSetting as mongoSetting, ModelMount as modelMonut } from './base'
+import { MongoDB as mongoDB, MongoSetting as IMongoSetting, ModelMount as modelMonut, mongoSetting as ImongoSetting } from './base'
 import { MongooseDao as mongooseDao, MongooseDaoSetting as mongooseDaoSetting, QueryOptions as queryOptions, callback as Callback } from './dao'
 
 export declare class MongoDB extends mongoDB {}
 
-export declare const MongoSetting: typeof mongoSetting
+export declare const MongoSetting: typeof IMongoSetting
+
+export declare interface mongoSetting extends ImongoSetting {}
 
 export declare const ModelMount: typeof modelMonut
 

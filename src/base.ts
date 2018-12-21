@@ -2,7 +2,7 @@ import * as Promise from 'bluebird'
 import * as mongoose from 'mongoose'
 import { callback } from './dao'
 
-interface mongoSetting {
+export interface mongoSetting {
   urls: string;
   options?: mongoose.ConnectionOptions;
 }

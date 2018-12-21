@@ -1,2 +1,2 @@
-export { MongoDB, ModelMount, MongoSetting } from './base'
+export { MongoDB, ModelMount, MongoSetting, mongoSetting } from './base'
 export { MongooseDao, MongooseDaoSetting, QueryOptions } from './dao'
