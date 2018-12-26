@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose'
 import { callback } from './dao'
 
 export interface mongoSetting {
-  urls: string;
+  uris: string;
   options?: mongoose.ConnectionOptions;
 }
 
@@ -20,9 +20,9 @@ export class MongoDB {
   }
   
   public connect (): void {
-    mongoose.connect(this.__setting.urls, this.__setting.options || this.__defaultOptions, err => {
+    mongoose.connect(this.__setting.uris, this.__setting.options || this.__defaultOptions, err => {
       if (err) {
-        console.error(`connect to ${this.__setting.urls} error: ${err.message}`)
+        console.error(`connect to ${this.__setting.uris} error: ${err.message}`)
         process.exit(1)
       }
     })

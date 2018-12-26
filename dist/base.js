@@ -21,9 +21,9 @@ var MongoDB = (function () {
     }
     MongoDB.prototype.connect = function () {
         var _this = this;
-        mongoose.connect(this.__setting.urls, this.__setting.options || this.__defaultOptions, function (err) {
+        mongoose.connect(this.__setting.uris, this.__setting.options || this.__defaultOptions, function (err) {
             if (err) {
-                console.error("connect to " + _this.__setting.urls + " error: " + err.message);
+                console.error("connect to " + _this.__setting.uris + " error: " + err.message);
                 process.exit(1);
             }
         });

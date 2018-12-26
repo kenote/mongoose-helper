@@ -18,7 +18,7 @@ import config from '../config'
 import userSchema from './user'
 
 @MongoSetting({
-  urls: 'mongodb://localhost:27017/db_connection',
+  uris: 'mongodb://localhost:27017/db_connection',
   options: {
     useNewUrlParser: true,
     useCreateIndex: true
