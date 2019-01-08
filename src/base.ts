@@ -1,6 +1,4 @@
-import * as Promise from 'bluebird'
 import * as mongoose from 'mongoose'
-import { callback } from './dao'
 
 export interface mongoSetting {
   uris: string;

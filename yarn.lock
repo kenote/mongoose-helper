@@ -9,6 +9,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/lodash@^4.14.119":
+  version "4.14.119"
+  resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.119.tgz#be847e5f4bc3e35e46d041c394ead8b603ad8b39"
+  integrity sha1-voR+X0vD415G0EHDlOrYtgOtizk=
+
 "@types/mongodb@*":
   version "3.1.17"
   resolved "http://registry.npm.taobao.org/@types/mongodb/download/@types/mongodb-3.1.17.tgz#11351b147b68e7674cff9055ea82072521bc6fe3"

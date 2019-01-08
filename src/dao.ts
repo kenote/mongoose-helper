@@ -1,6 +1,6 @@
 import * as Promise from 'bluebird'
 import * as mongoose from 'mongoose'
-import zipObject from 'lodash/zipObject'
+import { zipObject } from 'lodash'
 
 export interface QueryOptions {
   name?: string;

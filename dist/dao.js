@@ -32,7 +32,7 @@ var __spread = (this && this.__spread) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Promise = require("bluebird");
-var zipObject_1 = require("lodash/zipObject");
+var lodash_1 = require("lodash");
 var MongooseDao = (function () {
     function MongooseDao(Model, options) {
         if (options === void 0) { options = {}; }
@@ -144,7 +144,7 @@ var MongooseDao = (function () {
             this.find(conditions, options),
             this.counts(conditions)
         ])
-            .then(function (fill) { return zipObject_1.default(['data', 'counts', 'limit'], __spread(fill, [limit || 0])); });
+            .then(function (fill) { return lodash_1.zipObject(['data', 'counts', 'limit'], __spread(fill, [limit || 0])); });
     };
     return MongooseDao;
 }());
