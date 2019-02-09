@@ -1,6 +1,6 @@
 {
   "name": "kenote-mongoose-helper",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Mongoose's Helper.",
   "main": "./dist/index.js",
   "typings": "./src/index.d.ts",

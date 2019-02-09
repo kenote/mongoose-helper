@@ -1,17 +1,17 @@
 import * as mongoose from 'mongoose'
 
 export interface mongoSetting {
-  uris: string;
-  options?: mongoose.ConnectionOptions;
+  uris: string
+  options?: mongoose.ConnectionOptions
 }
 
 interface models {
-  [propName: string]: mongoose.Model<mongoose.Document, {}>;
+  [propName: string]: mongoose.Model<mongoose.Document, {}>
 }
 
 export class MongoDB {
-  public __setting: mongoSetting;
-  public __Models: models;
+  public __setting: mongoSetting
+  public __Models: models
   private __defaultOptions: mongoose.ConnectionOptions = {
     useNewUrlParser: true,
     useCreateIndex: true

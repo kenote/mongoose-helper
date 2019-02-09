@@ -1,19 +1,19 @@
 
-import { MongoDB as mongoDB, MongoSetting as IMongoSetting, ModelMount as modelMonut, mongoSetting as ImongoSetting } from './base'
-import { MongooseDao as mongooseDao, MongooseDaoSetting as mongooseDaoSetting, QueryOptions as queryOptions, callback as Callback } from './dao'
+import { MongoDB as __MongoDB, MongoSetting as __MongoSetting, ModelMount as __ModelMount, mongoSetting as __mongoSetting } from './base'
+import { MongooseDao as __MongooseDao, MongooseDaoSetting as __MongooseDaoSetting, QueryOptions as __QueryOptions, callback as __callback } from './dao'
 
-export declare class MongoDB extends mongoDB {}
+export declare class MongoDB extends __MongoDB {}
 
-export declare const MongoSetting: typeof IMongoSetting
+export declare const MongoSetting: typeof __MongoSetting
 
-export declare interface mongoSetting extends ImongoSetting {}
+export declare interface mongoSetting extends __mongoSetting {}
 
-export declare const ModelMount: typeof modelMonut
+export declare const ModelMount: typeof __ModelMount
 
-export declare class MongooseDao extends mongooseDao {}
+export declare class MongooseDao extends __MongooseDao {}
 
-export declare const MongooseDaoSetting: typeof mongooseDaoSetting
+export declare const MongooseDaoSetting: typeof __MongooseDaoSetting
 
-export declare interface QueryOptions extends queryOptions {}
+export declare interface QueryOptions extends __QueryOptions {}
 
-export declare const callback: typeof Callback
+export declare const callback: typeof __callback

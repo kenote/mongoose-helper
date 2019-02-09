@@ -3,40 +3,40 @@ import * as mongoose from 'mongoose'
 import { zipObject } from 'lodash'
 
 export interface QueryOptions {
-  name?: string;
-  populate?: mongoose.ModelPopulateOptions;
-  select?: any;
-  sort?: any;
-  limit?: number;
-  skip?: number;
-  seqModel?: mongoose.Model<mongoose.Document, {}>;
+  name?: string
+  populate?: mongoose.ModelPopulateOptions[] | mongoose.ModelPopulateOptions
+  select?: any
+  sort?: any
+  limit?: number
+  skip?: number
+  seqModel?: mongoose.Model<mongoose.Document, {}>
 }
 
 interface daoSetting {
-  idName?: string;
-  idStart?: number;
-  idStep?: number;
+  idName?: string
+  idStart?: number
+  idStep?: number
 }
 
 interface seqDocument extends mongoose.Document {
-  name: string;
-  seq: number;
+  name: string
+  seq: number
 }
 
 export class MongooseDao {
 
-  public name: string;
-  public model: mongoose.Model<mongoose.Document, {}>;
-  public populate: mongoose.ModelPopulateOptions = { path: '' };
+  public name: string
+  public model: mongoose.Model<mongoose.Document, {}>
+  public populate: mongoose.ModelPopulateOptions[] | mongoose.ModelPopulateOptions = { path: '' }
 
-  private setting: daoSetting;
-  private seqModel: mongoose.Model<mongoose.Document, {}>;
+  private setting: daoSetting
+  private seqModel: mongoose.Model<mongoose.Document, {}>
 
   constructor (Model: mongoose.Model<mongoose.Document, {}>, options: QueryOptions = {}) {
-    this.model = Model;
-    this.name = options.name || Model.modelName;
+    this.model = Model
+    this.name = options.name || Model.modelName
     if (options.populate) {
-      this.populate = options.populate;
+      this.populate = options.populate
     }
     if (options.seqModel) {
       this.seqModel = options.seqModel
