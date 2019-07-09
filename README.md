@@ -115,7 +115,7 @@ this repo is released under the [MIT License](https://github.com/kenote/mongoose
 [npm-url]: https://www.npmjs.com/package/kenote-mongoose-helper
 [downloads-image]: https://img.shields.io/npm/dm/kenote-mongoose-helper.svg
 [downloads-url]: https://www.npmjs.com/package/kenote-mongoose-helper
-[travis-image]: https://travis-ci.com/kenote/config-mongoose.svg?branch=master
+[travis-image]: https://travis-ci.com/kenote/mongoose-helper.svg?branch=master
 [travis-url]: https://travis-ci.com/kenote/mongoose-helper
 [licensed-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [licensed-url]: https://github.com/kenote/mongoose-helper/blob/master/LICENSE
