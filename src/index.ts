@@ -1,2 +1,3 @@
-export { MongoDB, ModelMount, MongoSetting, mongoSetting } from './base'
-export { MongooseDao, MongooseDaoSetting, QueryOptions } from './dao'
+export { Connector, Connect, Mount } from './connector'
+export { seqModel } from './model'
+export { MongooseDao, autoNumber, callback } from './dao'

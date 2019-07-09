@@ -1,9 +1,17 @@
 # mongoose-helper
+
 Mongoose's Helper.
+
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![Build Status][travis-image]][travis-url]
+[![Gratipay][licensed-image]][licensed-url]
 
 ## Installation
 
 ```bash
+$ npm install kenote-mongoose-helper
+#
 $ yarn add kenote-mongoose-helper
 ```
 
@@ -13,104 +21,91 @@ $ yarn add kenote-mongoose-helper
 
 ```ts
 import * as mongoose from 'mongoose'
-import { MongoDB as mongoDB, MongoSetting, ModelMount } from 'kenote-mongoose-helper'
-import config from '../config'
-import userSchema from './user'
+import { Connector, Connect, Mount } from 'kenote-mongoose-helper'
+import userModel from './user'
 
-@MongoSetting({
-  uris: 'mongodb://localhost:27017/db_connection',
-  options: {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }
+@Connect({
+  uris: 'mongodb://localhost:27017/mongodb_test'
 })
-@ModelMount({
-  userModel: mongoose.model('user', userSchema)
-})
-class MongoDB extends mongoDB {
+@Mount({ userModel })
+class MongoDB extends Connector {}
 
-}
-
-const DB: MongoDB = new MongoDB()
-
+const DB: Connector = new MongoDB()
 DB.connect()
 
 export default DB.__Models
 ```
 
+`models/user.ts`
+
+```ts
+import { Schema, model } from 'mongoose'
+
+export default model('user', new Schema({
+  id: {
+    type: Number,
+    default: 0,
+    index: { unique: true }
+  },
+  username: {
+    type: String,
+    required: true
+  }
+}))
+```
+
 `proxy/user.ts`
 
 ```ts
-import Promise from 'bluebird'
 import * as mongoose from 'mongoose' 
+import { MongooseDao, autoNumber, QueryOptions } from 'kenote-mongoose-helper'
 import __Model from '../models'
-import { MongooseDao as mongooseDao, MongooseDaoSetting, QueryOptions } from 'kenote-mongoose-helper'
 
-(<any>mongoose).Promise = Promise
-const Model: mongoose.Model<mongoose.Document, {}> = __Model['userModel']
+const Model: mongoose.Model<mongoose.Document, {}> = __Models.userModel
 const options: QueryOptions = {
   name: 'user',
   populate: { path: '' },
-  seqModel: __Model['seqModel']
+  seqModel: __Models.seqModel
 }
 
-@MongooseDaoSetting({
-  idName: 'userid'
+@autoNumber({
+  idName: 'id'
 })
-class MongooseDao extends mongooseDao {}
+class UserDao extends MongooseDao {}
 
-export interface createDocument {
-  username: string;
+class UserProxy {
+
+  public Dao: MongooseDao = new UserDao(Model, options)
 }
 
-export interface responseDocument extends mongoose.Document {
-  id: number;
-  username: string;
-}
-
-class groupProxy {
-
-  public Dao: MongooseDao;
-
-  constructor () {
-    this.Dao = new MongooseDao(Model, options)
-  }
-
-  public create (doc: createDocument): Promise<responseDocument | {}> {
-    let start = this.Dao.start
-
-    return start()
-      .then( (counts: number) => {
-        if (counts > 0) {
-
-        }
-        return this.Dao.insert(doc)
-      })
-  }
-}
-
-export default new userProxy()
+export default new UserProxy()
 ```
 
 `**/user.ts`
 
 ```ts
+import * as mongoose from 'mongoose'
 import userProxy from '../proxy/user'
 
-userProxy.create({ username: 'test' })
-.then( user => {
-  console.log(user)
-  /*
-  {
-    userid: 1,
-    username: 'test',
-    _id: 5c1762db4539f6260d548f13,
-    __v: 0
+async function createUser (doc: any): mongoose.Document | null {
+  try {
+    let user: mongoose.Document | null = userProxy.Dao.create(doc)
+    return user
+  } catch (error) {
+    console.erroe(error)
   }
-  */
-})
+}
 ```
 
 ## License
 
 this repo is released under the [MIT License](https://github.com/kenote/mongoose-helper/blob/master/LICENSE).
+
+[npm-image]: https://img.shields.io/npm/v/kenote-mongoose-helper.svg
+[npm-url]: https://www.npmjs.com/package/kenote-mongoose-helper
+[downloads-image]: https://img.shields.io/npm/dm/kenote-mongoose-helper.svg
+[downloads-url]: https://www.npmjs.com/package/kenote-mongoose-helper
+[travis-image]: https://travis-ci.com/kenote/config-mongoose.svg?branch=master
+[travis-url]: https://travis-ci.com/kenote/mongoose-helper
+[licensed-image]: https://img.shields.io/badge/license-MIT-blue.svg
+[licensed-url]: https://github.com/kenote/mongoose-helper/blob/master/LICENSE

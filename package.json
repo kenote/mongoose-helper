@@ -1,21 +1,27 @@
 {
   "name": "kenote-mongoose-helper",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Mongoose's Helper.",
-  "main": "./dist/index.js",
-  "typings": "./src/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "types/index.d.ts",
   "repository": "https://github.com/kenote/mongoose-helper.git",
   "author": "thondery <thondery@163.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "test": "jest",
+    "build": "rm -rf ./dist && tsc",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.119",
-    "@types/mongoose": "^5.3.5",
-    "bluebird": "^3.5.3",
-    "mongoose": "^5.3.15",
-    "typescript": "^3.2.2"
+    "@types/bluebird": "^3.5.27",
+    "@types/jest": "^24.0.15",
+    "@types/lodash": "^4.14.135",
+    "@types/mongoose": "^5.5.7",
+    "jest": "^24.8.0",
+    "mongoose": "^5.6.3",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.2"
   },
   "peerDependencies": {
     "bluebird": "^3.5",
