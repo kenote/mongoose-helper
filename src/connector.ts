@@ -51,7 +51,7 @@ export function Connect (setting: ConnectorSetting): any {
  * 挂载 Models
  * @param models Maps<mongoose.Model<mongoose.Document, {}>>
  */
-export function Mount (models: Maps<mongoose.Model<mongoose.Document, {}>>): any {
+export function MountModels (models: Maps<mongoose.Model<mongoose.Document, {}>>): any {
   return function (target: any): void {
     target.prototype.__Models = { seqModel, ...models }
   }

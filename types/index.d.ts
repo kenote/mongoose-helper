@@ -8,12 +8,12 @@ import {
   KenoteMongooseInsertWriteResult,
   KenoteMongooseDeleteWriteResult,
 } from './dao'
-import { Connector, Connect, Mount, seqModel, MongooseDao, autoNumber, callback } from '../src'
+import { Connector, Connect, MountModels, seqModel, MongooseDao, autoNumber, callback } from '../src'
 
 export {
   Connector,
   Connect,
-  Mount,
+  MountModels,
   seqModel,
   MongooseDao,
   autoNumber,

@@ -31,13 +31,13 @@ $ yarn add kenote-mongoose-helper
 
 ```ts
 import * as mongoose from 'mongoose'
-import { Connector, Connect, Mount } from 'kenote-mongoose-helper'
+import { Connector, Connect, MountModels } from 'kenote-mongoose-helper'
 import userModel from './user'
 
 @Connect({
   uris: 'mongodb://localhost:27017/mongodb_test'
 })
-@Mount({ userModel })
+@MountModels({ userModel })
 class MongoDB extends Connector {}
 
 const DB: Connector = new MongoDB()
