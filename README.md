@@ -7,6 +7,16 @@ Mongoose's Helper.
 [![Build Status][travis-image]][travis-url]
 [![Gratipay][licensed-image]][licensed-url]
 
+## Premise
+
+```bash
+$ npm install mongoose
+$ npm install --save-dev @types/mongoose @types/bluebird @types/lodash
+# Or
+$ yarn add mongoose
+$ yarn add -D @types/mongoose @types/bluebird @types/lodash
+```
+
 ## Installation
 
 ```bash
