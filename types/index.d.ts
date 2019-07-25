@@ -1,4 +1,9 @@
-import { KenoteMongooseConnectorSetting } from './connector'
+import { 
+  KenoteMongooseConnectorSetting, 
+  KenoteMongooseConnect, 
+  KenoteMongooseConnector, 
+  KenoteMongooseMountModels 
+} from './connector'
 import { 
   KenoteMongooseQueryOptions, 
   KenoteMongooseAutoNumber, 
@@ -7,17 +12,20 @@ import {
   KenoteMongooseUpdateWriteResult,
   KenoteMongooseInsertWriteResult,
   KenoteMongooseDeleteWriteResult,
+  KenoteMongooseMongooseDao,
+  KenoteMongooseautoNumber,
+  KenoteMongooseCallback
 } from './dao'
-import { Connector, Connect, MountModels, seqModel, MongooseDao, autoNumber, callback } from '../src'
+import { KenoteMongooseSeqModel } from './model'
 
 export {
-  Connector,
-  Connect,
-  MountModels,
-  seqModel,
-  MongooseDao,
-  autoNumber,
-  callback,
+  KenoteMongooseConnector as Connector,
+  KenoteMongooseConnect as Connect,
+  KenoteMongooseMountModels as MountModels,
+  KenoteMongooseSeqModel as seqModel,
+  KenoteMongooseMongooseDao as MongooseDao,
+  KenoteMongooseautoNumber as autoNumber,
+  KenoteMongooseCallback as callback,
   KenoteConfigBase,
   KenoteConfigMaps as Maps,
   KenoteMongooseConnectorSetting as ConnectorSetting,

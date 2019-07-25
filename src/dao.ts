@@ -5,6 +5,7 @@ import { zipObject } from 'lodash'
 import { seqModel } from './'
 import { QueryOptions, AutoNumber, seqDocument, Maps, ListData, UpdateWriteResult, InsertWriteResult, DeleteWriteResult } from '../types'
 
+(<mongoose.Mongoose> mongoose).Promise = Bluebird
 /**
  * Mongoose Dao层
  */
@@ -18,7 +19,7 @@ export class MongooseDao {
   /**
    * 自动编号配置
    */
-  public autoNmber: AutoNumber
+  private autoNmber?: AutoNumber
 
   /**
    * Mongoose Model层
@@ -55,7 +56,7 @@ export class MongooseDao {
    */
   public create (doc: any, populate?: mongoose.ModelPopulateOptions): Promise<mongoose.Document> {
     return this.model.create(doc)
-      .then( res => Bluebird.promisifyAll(res)['populateAsync'](populate || this.options.populate) )
+      .then( res => mongoose.Promise.promisifyAll(res)['populateAsync'](populate || this.options.populate) )
   }
 
   /**
@@ -195,7 +196,7 @@ export class MongooseDao {
   private addAndUpdateKeys (name: string, start: number = 1): Promise<number> {
     if (!this.autoNmber) return Promise.resolve(0)
     let idStep: number = this.autoNmber.idStep || 1
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: (thenableOrResult?: any) => void, reject: (err?: any) => void) => {
       this.seqModel.findOne({ name }, (err: any, res: mongoose.Document | null) => callback(resolve, reject, err, res))
     })
     .then( (doc: seqDocument) => {
@@ -208,7 +209,7 @@ export class MongooseDao {
         return this.seqModel.create({ name, seq: start })
       }
     })
-    .then( (ret: seqDocument) => ret.seq || 1)
+    .then( (ret: seqDocument | mongoose.Document) => ret['seq'] || 1)
   }
 
 }
@@ -235,7 +236,7 @@ export function autoNumber (setting: AutoNumber): any {
  * @param err Error
  * @param doc any
  */
-export const callback = (resolve: (thenableOrResult?: unknown) => void, reject: (error?: any) => void, err: Error, doc: any = null) => {
+export const callback = (resolve: (thenableOrResult?: any) => void, reject: (error?: any) => void, err: Error, doc: any = null) => {
   if (err) {
     reject(err)
   }

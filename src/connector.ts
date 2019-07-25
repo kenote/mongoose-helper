@@ -10,12 +10,12 @@ export class Connector {
   /**
    * 连接配置
    */
-  public __setting: ConnectorSetting
+  private __setting?: ConnectorSetting
 
   /**
    * 数据模型集
    */
-  public __Models: Maps<mongoose.Model<mongoose.Document, {}>>
+  public __Models?: Maps<mongoose.Model<mongoose.Document, {}>>
 
   /**
    * 连接数据库
