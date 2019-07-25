@@ -10,4 +10,4 @@ class MongoDB extends Connector {}
 const DB: Connector = new MongoDB()
 DB.connect()
 
-export default DB.__Models
+export default DB.__Models || {}
